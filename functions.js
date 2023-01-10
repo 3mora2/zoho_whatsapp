@@ -30,20 +30,22 @@ function sendEmail(data) {
     let email = process.env.EMAIL
     let password = process.env.PASSWORD
     if (data.send){
+        try {
         console.log(data.text)
-        var transporter = nodemailer.createTransport({
-              service: 'gmail',
-              auth: {
-                user: email,
-                pass: password
-              }
+
+            let transporter = nodemailer.createTransport({
+                service: 'gmail',
+                auth: {
+                    user: email,
+                    pass: password
+                }
             });
 
-            var mailOptions = {
-              from: email,
-              to: email,
-              subject: 'Whatsapp Status',
-              text: `Whatsapp Status: ${data.text}`
+            let mailOptions = {
+                from: email,
+                to: email,
+                subject: 'Whatsapp Status',
+                text: `Whatsapp Status: ${data.text}`
             };
 
             transporter.sendMail(mailOptions, function(error, info){
@@ -53,6 +55,9 @@ function sendEmail(data) {
                 console.log('Email sent: ' + info.response);
               }
             });
+        } catch (e) {
+            console.log(e)
+        }
     }
 }
 module.exports = zoho
