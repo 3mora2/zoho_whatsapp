@@ -6,7 +6,7 @@ const path = require('path');
 const wppconnect = require('@wppconnect-team/wppconnect');
 const axios = require('axios');
 const zoho = require("./functions");
-const {sendEmail} = require("./functions");
+const { sendEmail } = require("./functions");
 
 
 class Sessions {
@@ -92,6 +92,7 @@ class Sessions {
                     }
                     sendEmail(StatusFind[statusSession])
                 },
+                browserArgs: ['--no-sandbox'],
                 headless: false, // Headless chrome
                 useChrome: true, // If false will use Chromium instance
                 logQR: true, // Logs QR automatically in terminal
@@ -188,30 +189,30 @@ module.exports = Sessions
 
 
 let StatusFind = {
-    "autocloseCalled":{"text":"The browser was closed using the autoClose.", "send":true},
-    "browserClose":{"text":"If the browser is closed this parameter is returned.", "send":true},
-    "desconnectedMobile":{"text":"Client has disconnected in to mobile.", "send":true},
-    "inChat":{"text":"Client is ready to send and receive messages.", "send":false},
-    "isLogged":{"text":"When the user is already logged in to the browser.", "send":false},
-    "notLogged":{"text":"When the user is not connected to the browser, it is necessary to scan the QR code through the cell phone in the option WhatsApp Web.", "send":true},
-    "phoneNotConnected":{"text":"Client couldn't connect to phone.", "send":true},
-    "qrReadError":{"text":"Failed to authenticate.", "send":true},
-    "qrReadFail":{"text":"If the browser stops when the QR code scan is in progress, this parameter is returned.", "send":true},
-    "qrReadSuccess":{"text":"If the user is not logged in, the QR code is passed on the terminal a callback is returned. After the correct reading by cell phone this parameter is returned.", "send":true},
-    "serverClose":{"text":"Client has disconnected in to wss.", "send":true}
-    }
+    "autocloseCalled": { "text": "The browser was closed using the autoClose.", "send": true },
+    "browserClose": { "text": "If the browser is closed this parameter is returned.", "send": true },
+    "desconnectedMobile": { "text": "Client has disconnected in to mobile.", "send": true },
+    "inChat": { "text": "Client is ready to send and receive messages.", "send": false },
+    "isLogged": { "text": "When the user is already logged in to the browser.", "send": false },
+    "notLogged": { "text": "When the user is not connected to the browser, it is necessary to scan the QR code through the cell phone in the option WhatsApp Web.", "send": true },
+    "phoneNotConnected": { "text": "Client couldn't connect to phone.", "send": true },
+    "qrReadError": { "text": "Failed to authenticate.", "send": true },
+    "qrReadFail": { "text": "If the browser stops when the QR code scan is in progress, this parameter is returned.", "send": true },
+    "qrReadSuccess": { "text": "If the user is not logged in, the QR code is passed on the terminal a callback is returned. After the correct reading by cell phone this parameter is returned.", "send": true },
+    "serverClose": { "text": "Client has disconnected in to wss.", "send": true }
+}
 
 let SocketState = {
-    "CONFLICT":{"text":"Conflic page, when there are another whatsapp web openned.","send":true},
-    "CONNECTED":{"text":"When the whatsapp web is ready.","send":false},
-    "DEPRECATED_VERSION":{"text":"Deprecated page.","send":true},
-    "OPENING":{"text":"When the whatsapp web page is loading.","send":false},
-    "PAIRING":{"text":"When the whatsapp web is connecting to smartphone after QR code scan.","send":false},
-    "PROXYBLOCK":{"text":"Blocked page, by proxy.","send":true},
-    "SMB_TOS_BLOCK":{"text":"Blocked page.","send":true},
-    "TIMEOUT":{"text":"When the whatsapp web couldn't connect to smartphone.","send":true},
-    "TOS_BLOCK":{"text":"Blocked page.","send":true},
-    "UNLAUNCHED":{"text":"When the whatsapp web page is initialized yet.","send":true},
-    "UNPAIRED":{"text":"Disconnected page, waiting for QRCode scan","send":true},
-    "UNPAIRED_IDLE":{"text":"Disconnected page with expired QRCode","send":true}
+    "CONFLICT": { "text": "Conflic page, when there are another whatsapp web openned.", "send": true },
+    "CONNECTED": { "text": "When the whatsapp web is ready.", "send": false },
+    "DEPRECATED_VERSION": { "text": "Deprecated page.", "send": true },
+    "OPENING": { "text": "When the whatsapp web page is loading.", "send": false },
+    "PAIRING": { "text": "When the whatsapp web is connecting to smartphone after QR code scan.", "send": false },
+    "PROXYBLOCK": { "text": "Blocked page, by proxy.", "send": true },
+    "SMB_TOS_BLOCK": { "text": "Blocked page.", "send": true },
+    "TIMEOUT": { "text": "When the whatsapp web couldn't connect to smartphone.", "send": true },
+    "TOS_BLOCK": { "text": "Blocked page.", "send": true },
+    "UNLAUNCHED": { "text": "When the whatsapp web page is initialized yet.", "send": true },
+    "UNPAIRED": { "text": "Disconnected page, waiting for QRCode scan", "send": true },
+    "UNPAIRED_IDLE": { "text": "Disconnected page with expired QRCode", "send": true }
 }
