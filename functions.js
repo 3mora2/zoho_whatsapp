@@ -2,6 +2,8 @@ const axios = require("axios");
 var nodemailer = require('nodemailer');
 require('dotenv').config();
 
+let webhook = process.env.WEBHOOK
+
 function zoho(sender) {
     var data = JSON.stringify({
         "name": sender.pushname,
@@ -10,7 +12,7 @@ function zoho(sender) {
 
     var config = {
         method: 'post',
-        url: 'https://hook.eu1.make.com/3r4gtyy3c6xz5hm238znec8i69p3frye',
+        url: webhook,
         headers: {
             'Content-Type': 'application/json'
         },
@@ -29,9 +31,9 @@ function zoho(sender) {
 function sendEmail(data) {
     let email = process.env.EMAIL
     let password = process.env.PASSWORD
-    if (data.send){
+    if (data.send) {
         try {
-        console.log(data.text)
+            console.log(data.text)
 
             let transporter = nodemailer.createTransport({
                 service: 'gmail',
@@ -48,12 +50,12 @@ function sendEmail(data) {
                 text: `Whatsapp Status: ${data.text}`
             };
 
-            transporter.sendMail(mailOptions, function(error, info){
-              if (error) {
-                console.log(error);
-              } else {
-                console.log('Email sent: ' + info.response);
-              }
+            transporter.sendMail(mailOptions, function(error, info) {
+                if (error) {
+                    console.log(error);
+                } else {
+                    console.log('Email sent: ' + info.response);
+                }
             });
         } catch (e) {
             console.log(e)

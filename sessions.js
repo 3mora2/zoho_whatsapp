@@ -87,13 +87,14 @@ class Sessions {
                     console.log(`${sessionName}:${statusSession}`);
                     if (["browserClose", 'serverClose', "autocloseCalled"].includes(statusSession)) {
                         session.state = "CLOSED";
+                        session.qrcode = false;
                         session.client = false;
                         console.log("client.close - session.state: " + session.state);
                     }
                     sendEmail(StatusFind[statusSession])
                 },
-                browserArgs: ['--no-sandbox'],
-                headless: false, // Headless chrome
+                browserArgs: ['--no-sandbox', '--disable-setuid-sandbox'],
+                headless: true, // Headless chrome
                 useChrome: true, // If false will use Chromium instance
                 logQR: true, // Logs QR automatically in terminal
                 updatesLog: true, // Logs info updates automatically in terminal
