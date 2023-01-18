@@ -6,10 +6,9 @@ let webhook = process.env.WEBHOOK
 
 function zoho(sender) {
     var data = JSON.stringify({
-        "name": sender.pushname,
+        "name": sender.notifyName,
         "number": sender.from.split("@")[0]
     });
-    console.log(data)
 
     var config = {
         method: 'post',
